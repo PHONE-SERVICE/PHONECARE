@@ -109,7 +109,7 @@ footer{background:#111827;color:white;padding:40px 6%;display:flex;justify-conte
 
 <footer>
   <div><div class="logo">PHONE<span>CARE</span></div><div class="footer-muted">Jual beli HP & service terpercaya.</div></div>
-  <div><b>Kontak</b><div class="footer-muted">WhatsApp: 08xxxxxxxxxx</div><div class="footer-muted">Senin–Sabtu • 09.00–20.00</div></div>
+  <div><b>Kontak</b><div class="footer-muted">WhatsApp: 083833157245</div><div class="footer-muted">Senin–Sabtu • 09.00–20.00</div></div>
   <div><button class="btn light" onclick="openAdmin()">🔐 Admin</button></div>
 </footer>
 
@@ -156,7 +156,7 @@ function buy(id){let p=products.find(x=>x.id===id);location.href=`https://wa.me/
 function tradeWA(){location.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo PHONECARE, saya ingin tukar tambah HP. Merek/tipe HP saya: ... Kondisi: ... Kapasitas: ...")}`}
 function showModal(html){document.getElementById("modalContent").innerHTML=html;document.getElementById("modal").classList.add("show")}
 function closeModal(){document.getElementById("modal").classList.remove("show")}
-function openAdmin(){let pin=prompt("Masukkan PIN admin:");if(pin==="1234"){document.getElementById("adminSection").style.display="block";document.getElementById("adminSection").scrollIntoView({behavior:"smooth"});renderAdmin()}else if(pin!==null)alert("PIN salah.")}
+function openAdmin(){let pin=prompt("Masukkan PIN admin:");if(pin==="Delapan kali"){document.getElementById("adminSection").style.display="block";document.getElementById("adminSection").scrollIntoView({behavior:"smooth"});renderAdmin()}else if(pin!==null)alert("PIN salah.")}
 function renderAdmin(){document.getElementById("adminTable").innerHTML=products.map(p=>`<tr><td><b>${p.name}</b></td><td>${rupiah(p.price)}</td><td>${p.category}</td><td><div class="admin-actions"><button class="btn light" onclick="editProduct(${p.id})">Edit</button><button class="btn" style="background:#fee2e2;color:#b91c1c" onclick="deleteProduct(${p.id})">Hapus</button></div></td></tr>`).join("")}
 function openProductForm(p=null){
  editingId=p?p.id:null;
