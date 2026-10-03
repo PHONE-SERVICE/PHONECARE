@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHONECARE — Jual Beli & Service HP</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f7fb;color:#18202a}
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+.navbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e8ebf0;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;gap:20px}
+.logo{font-size:22px;font-weight:800;color:#2563eb}.logo span{color:#111827}
+.navlinks{display:flex;gap:20px}.navlinks a{font-weight:600;color:#4b5563}
+.navlinks a:hover{color:#2563eb}
+.btn{border:0;border-radius:10px;padding:11px 17px;cursor:pointer;font-weight:700}
+.primary{background:#2563eb;color:white}.dark{background:#111827;color:white}.light{background:#eef2ff;color:#2563eb}
+.hero{padding:70px 6%;background:linear-gradient(135deg,#eff6ff,#fff);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px}
+.hero h1{font-size:clamp(36px,6vw,64px);line-height:1.05;margin:12px 0}.hero h1 span{color:#2563eb}
+.hero p{font-size:18px;color:#667085;line-height:1.7;max-width:650px}.hero-buttons{display:flex;gap:12px;margin-top:25px;flex-wrap:wrap}
+.hero-card{background:#111827;color:white;border-radius:24px;padding:30px;box-shadow:0 20px 50px #2563eb25}
+.hero-card .phone{font-size:90px;text-align:center}.hero-card h3{font-size:25px;margin:10px 0}.hero-card p{color:#cbd5e1;font-size:14px}
+section{padding:60px 6%}.section-head{text-align:center;margin-bottom:30px}.section-head h2{font-size:34px;margin-bottom:8px}.section-head p{color:#667085}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;padding:30px 6%;background:#fff}
+.stat{padding:20px;text-align:center}.stat b{display:block;font-size:28px;color:#2563eb}.stat span{color:#667085}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.toolbar input,.toolbar select,.form input,.form textarea,.form select{width:100%;padding:12px;border:1px solid #d9dee7;border-radius:10px;background:white;outline:none}.search{flex:1;min-width:220px}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product{background:white;border-radius:16px;overflow:hidden;border:1px solid #e8ebf0;box-shadow:0 6px 20px #10182808}
+.product-img{height:220px;background:#eef2f7;display:flex;align-items:center;justify-content:center;overflow:hidden}.product-img img{width:100%;height:100%;object-fit:cover}.noimg{font-size:65px}
+.product-body{padding:18px}.badge{display:inline-block;background:#eaf2ff;color:#2563eb;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:9px}
+.product h3{font-size:19px;margin-bottom:7px}.price{font-size:21px;font-weight:800;margin:10px 0}.meta{font-size:13px;color:#667085;margin-bottom:15px}
+.product-actions{display:flex;gap:8px}.product-actions button{flex:1}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service{background:white;border:1px solid #e8ebf0;padding:25px;border-radius:16px}.service-icon{font-size:40px}.service h3{margin:12px 0 8px}.service p{color:#667085;line-height:1.6}.service strong{display:block;margin-top:15px;color:#2563eb}
+.trade{background:#111827;color:white;border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}.trade p{color:#cbd5e1;line-height:1.7;margin:10px 0}
+footer{background:#111827;color:white;padding:40px 6%;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer-muted{color:#9ca3af;margin-top:7px}
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;z-index:50;padding:20px}.modal.show{display:flex}.modal-box{background:white;border-radius:18px;padding:25px;width:min(520px,100%);max-height:90vh;overflow:auto}.modal-box h2{margin-bottom:18px}.form{display:grid;gap:12px}.form textarea{min-height:100px;resize:vertical}.form label{font-size:13px;font-weight:700}.close{float:right;background:#eef2f7;border:0;border-radius:50%;width:34px;height:34px;cursor:pointer}
+.admin-table{width:100%;border-collapse:collapse;background:white;border-radius:12px;overflow:hidden}.admin-table th,.admin-table td{padding:12px;border-bottom:1px solid #e8ebf0;text-align:left;font-size:14px}.admin-actions{display:flex;gap:6px}.empty{text-align:center;padding:45px;background:white;border-radius:15px;color:#667085}
+#adminSection{display:none}.cart-count{background:#ef4444;color:#fff;border-radius:50%;font-size:11px;padding:2px 6px;vertical-align:top}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.products,.services{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.trade{grid-template-columns:1fr}.navlinks{display:none}}
+@media(max-width:550px){section{padding:45px 5%}.products,.services{grid-template-columns:1fr}.hero{padding:50px 5%}.stats{padding:25px 5%}.navbar{padding:12px 5%}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">PHONE<span>CARE</span></div>
+  <div class="navlinks">
+    <a href="#home">Beranda</a><a href="#produk">Jual HP</a><a href="#service">Service</a><a href="#tukartambah">Tukar Tambah</a>
+  </div>
+  <button class="btn light" onclick="openCart()">🛒 <span id="cartCount" class="cart-count">0</span></button>
+</nav>
+
+<header class="hero" id="home">
+  <div>
+    <div class="badge">📱 Pusat HP & Service Terpercaya</div>
+    <h1>Jual Beli HP.<br><span>Service Tanpa Ribet.</span></h1>
+    <p>Cari HP baru atau bekas, service HP rusak, sampai tukar tambah. Semua bisa konsultasi langsung melalui WhatsApp.</p>
+    <div class="hero-buttons">
+      <a class="btn primary" href="#produk">Lihat HP</a>
+      <a class="btn dark" href="#service">🔧 Service HP</a>
+    </div>
+  </div>
+  <div class="hero-card"><div class="phone">📱</div><h3>PHONECARE</h3><p>Jual beli • Service • Tukar tambah</p></div>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>100+</b><span>HP Terjual</span></div>
+  <div class="stat"><b>500+</b><span>HP Diservice</span></div>
+  <div class="stat"><b>99%</b><span>Pelanggan Puas</span></div>
+  <div class="stat"><b>Fast</b><span>Respon WhatsApp</span></div>
+</div>
+
+<section id="produk">
+  <div class="section-head"><h2>📱 HP Pilihan</h2><p>Pilih HP yang kamu inginkan dan pesan langsung.</p></div>
+  <div class="toolbar">
+    <input id="search" class="search" placeholder="🔎 Cari merek atau tipe HP..." oninput="renderProducts()">
+    <select id="category" onchange="renderProducts()"><option value="all">Semua Kategori</option><option value="Baru">Baru</option><option value="Bekas">Bekas</option></select>
+  </div>
+  <div id="products" class="products"></div>
+</section>
+
+<section id="service">
+  <div class="section-head"><h2>🔧 Layanan Service</h2><p>Perbaikan untuk berbagai masalah HP.</p></div>
+  <div class="services">
+    <div class="service"><div class="service-icon">🔋</div><h3>Ganti Baterai</h3><p>Baterai cepat habis, drop, atau HP mati mendadak.</p><strong>Mulai Rp150.000</strong></div>
+    <div class="service"><div class="service-icon">🖥️</div><h3>Ganti LCD</h3><p>Layar pecah, retak, bergaris, atau touchscreen bermasalah.</p><strong>Mulai Rp250.000</strong></div>
+    <div class="service"><div class="service-icon">🔌</div><h3>Service Charging</h3><p>HP tidak mengisi daya atau konektor charger bermasalah.</p><strong>Mulai Rp100.000</strong></div>
+    <div class="service"><div class="service-icon">💧</div><h3>Perbaikan Mesin</h3><p>Pengecekan dan perbaikan masalah pada komponen mesin.</p><strong>Konsultasi dulu</strong></div>
+    <div class="service"><div class="service-icon">📲</div><h3>Software</h3><p>Reset, update, optimasi, dan penanganan masalah software.</p><strong>Mulai Rp75.000</strong></div>
+    <div class="service"><div class="service-icon">🔍</div><h3>Cek Kerusakan</h3><p>Diagnosa awal untuk mengetahui masalah HP sebelum diperbaiki.</p><strong>Gratis / sesuai kondisi</strong></div>
+  </div>
+</section>
+
+<section id="tukartambah">
+  <div class="trade">
+    <div><h2>🔄 Mau Tukar Tambah HP?</h2><p>Kirim merek, tipe, kapasitas, kondisi, dan foto HP kamu. Kami bantu cek dan estimasi harga.</p><button class="btn primary" onclick="tradeWA()">Tanya Tukar Tambah</button></div>
+    <div style="font-size:100px;text-align:center">📱 ⇄ 📱</div>
+  </div>
+</section>
+
+<section id="adminSection">
+  <div class="section-head"><h2>⚙️ Dashboard Admin</h2><p>Kelola katalog HP.</p></div>
+  <button class="btn primary" onclick="openProductForm()">＋ Tambah Produk</button>
+  <div style="overflow:auto;margin-top:18px">
+    <table class="admin-table"><thead><tr><th>Produk</th><th>Harga</th><th>Kategori</th><th>Aksi</th></tr></thead><tbody id="adminTable"></tbody></table>
+  </div>
+</section>
+
+<footer>
+  <div><div class="logo">PHONE<span>CARE</span></div><div class="footer-muted">Jual beli HP & service terpercaya.</div></div>
+  <div><b>Kontak</b><div class="footer-muted">WhatsApp: 08xxxxxxxxxx</div><div class="footer-muted">Senin–Sabtu • 09.00–20.00</div></div>
+  <div><button class="btn light" onclick="openAdmin()">🔐 Admin</button></div>
+</footer>
+
+<div id="modal" class="modal"><div class="modal-box"><button class="close" onclick="closeModal()">×</button><div id="modalContent"></div></div></div>
+
+<script>
+const WA_NUMBER="6281234567890"; // GANTI dengan nomor WhatsApp toko, format 62 tanpa +
+const defaultProducts=[
+ {id:1,name:"iPhone 13 128GB",price:6500000,category:"Bekas",condition:"Like New",image:""},
+ {id:2,name:"Samsung Galaxy A55 5G",price:4800000,category:"Baru",condition:"Garansi",image:""},
+ {id:3,name:"Redmi Note 13 Pro",price:3600000,category:"Baru",condition:"Garansi",image:""},
+ {id:4,name:"iPhone 11 64GB",price:4200000,category:"Bekas",condition:"Normal",image:""},
+ {id:5,name:"OPPO Reno 12",price:5200000,category:"Baru",condition:"Garansi",image:""},
+ {id:6,name:"POCO X6 Pro",price:4300000,category:"Bekas",condition:"Normal",image:""}
+];
+let products=JSON.parse(localStorage.getItem("phonecare_products")||"null")||defaultProducts;
+let cart=JSON.parse(localStorage.getItem("phonecare_cart")||"[]");
+let editingId=null;
+
+function rupiah(n){return new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n)}
+function save(){localStorage.setItem("phonecare_products",JSON.stringify(products));localStorage.setItem("phonecare_cart",JSON.stringify(cart))}
+function renderProducts(){
+ const q=document.getElementById("search").value.toLowerCase(), c=document.getElementById("category").value;
+ const list=products.filter(p=>(p.name.toLowerCase().includes(q)||p.condition.toLowerCase().includes(q))&&(c==="all"||p.category===c));
+ const box=document.getElementById("products");
+ if(!list.length){box.innerHTML='<div class="empty">Produk tidak ditemukan.</div>';return}
+ box.innerHTML=list.map(p=>`<article class="product">
+ <div class="product-img">${p.image?`<img src="${p.image}" alt="${p.name}">`:'<div class="noimg">📱</div>'}</div>
+ <div class="product-body"><span class="badge">${p.category}</span><h3>${p.name}</h3><div class="meta">${p.condition}</div><div class="price">${rupiah(p.price)}</div>
+ <div class="product-actions"><button class="btn light" onclick="addCart(${p.id})">🛒 Keranjang</button><button class="btn primary" onclick="buy(${p.id})">Beli</button></div></div></article>`).join("");
+}
+function addCart(id){let p=products.find(x=>x.id===id);cart.push(p);save();updateCart();alert(p.name+" masuk keranjang.");}
+function updateCart(){document.getElementById("cartCount").textContent=cart.length}
+function openCart(){
+ let content="<h2>🛒 Keranjang</h2>";
+ if(!cart.length)content+="<div class='empty'>Keranjang masih kosong.</div>";
+ else{content+=cart.map((p,i)=>`<div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #eee"><span>${p.name}<br><small>${rupiah(p.price)}</small></span><button class="btn light" onclick="removeCart(${i})">Hapus</button></div>`).join("");
+ content+=`<h3 style="margin:18px 0">Total: ${rupiah(cart.reduce((a,b)=>a+b.price,0))}</h3><button class="btn primary" style="width:100%" onclick="checkout()">Pesan via WhatsApp</button>`}
+ showModal(content);
+}
+function removeCart(i){cart.splice(i,1);save();updateCart();openCart()}
+function checkout(){let text="Halo PHONECARE, saya ingin membeli:%0A"+cart.map((p,i)=>`${i+1}. ${p.name} - ${rupiah(p.price)}`).join("%0A");location.href=`https://wa.me/${WA_NUMBER}?text=${text}`}
+function buy(id){let p=products.find(x=>x.id===id);location.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo PHONECARE, saya tertarik membeli "+p.name+" seharga "+rupiah(p.price)+". Apakah masih tersedia?")}`}
+function tradeWA(){location.href=`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo PHONECARE, saya ingin tukar tambah HP. Merek/tipe HP saya: ... Kondisi: ... Kapasitas: ...")}`}
+function showModal(html){document.getElementById("modalContent").innerHTML=html;document.getElementById("modal").classList.add("show")}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function openAdmin(){let pin=prompt("Masukkan PIN admin:");if(pin==="1234"){document.getElementById("adminSection").style.display="block";document.getElementById("adminSection").scrollIntoView({behavior:"smooth"});renderAdmin()}else if(pin!==null)alert("PIN salah.")}
+function renderAdmin(){document.getElementById("adminTable").innerHTML=products.map(p=>`<tr><td><b>${p.name}</b></td><td>${rupiah(p.price)}</td><td>${p.category}</td><td><div class="admin-actions"><button class="btn light" onclick="editProduct(${p.id})">Edit</button><button class="btn" style="background:#fee2e2;color:#b91c1c" onclick="deleteProduct(${p.id})">Hapus</button></div></td></tr>`).join("")}
+function openProductForm(p=null){
+ editingId=p?p.id:null;
+ showModal(`<h2>${p?"✏️ Edit":"＋ Tambah"} Produk</h2><div class="form">
+ <label>Nama HP</label><input id="pName" value="${p?p.name:""}" placeholder="Contoh: iPhone 14 128GB">
+ <label>Harga</label><input id="pPrice" type="number" value="${p?p.price:""}" placeholder="6500000">
+ <label>Kategori</label><select id="pCat"><option ${p?.category==="Baru"?"selected":""}>Baru</option><option ${p?.category==="Bekas"?"selected":""}>Bekas</option></select>
+ <label>Kondisi / Keterangan</label><input id="pCondition" value="${p?p.condition:""}" placeholder="Garansi / Like New / Normal">
+ <label>URL gambar</label><input id="pImage" value="${p?p.image:""}" placeholder="https://.../gambar.jpg">
+ <button class="btn primary" onclick="saveProduct()">Simpan Produk</button></div>`);
+}
+function saveProduct(){
+ let obj={id:editingId||Date.now(),name:document.getElementById("pName").value.trim(),price:Number(document.getElementById("pPrice").value),category:document.getElementById("pCat").value,condition:document.getElementById("pCondition").value.trim(),image:document.getElementById("pImage").value.trim()};
+ if(!obj.name||!obj.price){alert("Nama dan harga wajib diisi.");return}
+ if(editingId){products=products.map(p=>p.id===editingId?obj:p)}else products.push(obj);
+ save();closeModal();renderProducts();renderAdmin();
+}
+function editProduct(id){openProductForm(products.find(p=>p.id===id))}
+function deleteProduct(id){if(confirm("Hapus produk ini?")){products=products.filter(p=>p.id!==id);save();renderProducts();renderAdmin()}}
+renderProducts();updateCart();
+</script>
+</body>
+</html>
